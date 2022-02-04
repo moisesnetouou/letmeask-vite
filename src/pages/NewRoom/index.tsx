@@ -4,8 +4,7 @@ import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
 import './styles.scss';
 import { Button } from '../../components/Button';
-import { useContext } from 'react';
-import { AuthContext, useAuth } from '../../context/Auth';
+import { useAuth } from '../../hooks/useAuth';
 
 export function NewRoom(){
   const {user} = useAuth();

@@ -10,7 +10,7 @@ export function AuthProvider({children}: {children: ReactNode}){
   const [user, setUser] = useState<User>();
 
   useEffect(()=> {
-    auth.onAuthStateChanged(user => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
       if(user) {
         const {displayName, photoURL, uid} = user;
 
@@ -25,6 +25,10 @@ export function AuthProvider({children}: {children: ReactNode}){
         })
       }
     });
+
+    return () => {
+      unsubscribe();
+    }
   }, [])
 
 
@@ -52,13 +56,4 @@ export function AuthProvider({children}: {children: ReactNode}){
   return(
     <AuthContext.Provider value={{ user, signInWithGoogle }}>{children}</AuthContext.Provider>
   );
-}
-
-export function useAuth(){
-  const context = useContext(AuthContext);
-
-  if(!context){
-    throw new Error("useAuth must be used within an AuthProvider");
-  }
-  return context;
 }
