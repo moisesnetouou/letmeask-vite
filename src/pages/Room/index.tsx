@@ -40,7 +40,7 @@ export function Room(){
         name: user?.name,
         avatar: user.avatar,
       },
-      isHighLighted: false,
+      isHighlighted: false,
       isAnswered: false,
     };
 
@@ -101,7 +101,13 @@ export function Room(){
         <div className="question-list">
         {questions.map(question => {
           return(
-            <Question key={question.id} content={question.content} author={question.author}>
+            <Question 
+              key={question.id} 
+              content={question.content} 
+              author={question.author}
+              isAnswered={question.isAnswered}
+              isHighlighted={question.isHighlighted}
+            >
               <button
                 className={`like-button ${question.likeId ?'liked' : ''}`}
                 type='button'
