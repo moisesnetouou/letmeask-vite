@@ -9,11 +9,11 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_PROJECT_ID,
   storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_APP_IDD
+  appId: import.meta.env.VITE_APP_APP_IDD,
 };
 
 // Initialize Firebase
- firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const database = firebase.database();

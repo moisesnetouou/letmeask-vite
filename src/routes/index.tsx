@@ -1,12 +1,12 @@
-import {Routes, Route} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
-import {Home} from '../pages/Home';
-import {NewRoom} from '../pages/NewRoom';
-import {Room} from '../pages/Room';
-import {AdminRoom} from '../pages/AdminRoom';
+import { Home } from '../pages/Home';
+import { NewRoom } from '../pages/NewRoom';
+import { Room } from '../pages/Room';
+import { AdminRoom } from '../pages/AdminRoom';
 
-export default function MainRoutes(){
-  return(
+export default function MainRoutes() {
+  return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/rooms/new" element={<NewRoom />} />

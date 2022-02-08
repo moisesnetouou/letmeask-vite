@@ -1,9 +1,7 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
-import { AuthProvider } from "./Auth";
+import { AuthProvider } from './Auth';
 
-export default function AppProvider({children}: {children: ReactNode}){
-  return(
-    <AuthProvider>{children}</AuthProvider>
-  )
+export default function AppProvider({ children }: { children: ReactNode }) {
+  return <AuthProvider>{children}</AuthProvider>;
 }

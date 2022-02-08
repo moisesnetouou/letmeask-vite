@@ -3,15 +3,15 @@ import './styles.scss';
 
 type RoomCodeProps = {
   code?: string;
-}
+};
 
-export function RoomCode({code}: RoomCodeProps){
-  function copyRoomCodeToClipboard(){
+export function RoomCode({ code }: RoomCodeProps) {
+  function copyRoomCodeToClipboard() {
     // @ts-ignore
-    navigator.clipboard.writeText(code)
+    navigator.clipboard.writeText(code);
   }
 
-  return(
+  return (
     <button className="room-code" onClick={copyRoomCodeToClipboard}>
       <div>
         <img src={copyImg} alt="Copy room code" />

@@ -1,20 +1,22 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2016",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
-    "skipLibCheck": false,
-    "esModuleInterop": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "module": "ESNext",
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "strictNullChecks": false
   },
-  "include": ["./src", "@types/global.d.ts"]
+  "include": ["vite-env.d.ts", "./src", "**/*.ts", "**/*.tsx", "**/*.js"]
 }
