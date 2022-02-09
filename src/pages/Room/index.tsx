@@ -8,7 +8,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
-import './styles.scss';
+import { PageRoom } from './styles';
 
 type RoomParams = {
   id: string;
@@ -63,7 +63,7 @@ export function Room() {
   }
 
   return (
-    <div id="page-room">
+    <PageRoom>
       <header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
@@ -99,7 +99,8 @@ export function Room() {
               </div>
             ) : (
               <span>
-                Pra enviar uma pergunta, <button>faça seu login.</button>
+                Pra enviar uma pergunta,{' '}
+                <button type="button">faça seu login.</button>
               </span>
             )}
             <Button type="submit" disabled={!user}>
@@ -152,6 +153,6 @@ export function Room() {
           })}
         </div>
       </main>
-    </div>
+    </PageRoom>
   );
 }

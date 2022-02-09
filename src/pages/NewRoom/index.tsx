@@ -1,11 +1,11 @@
+import { FormEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-import './styles.scss';
+import { PageAuth } from './styles';
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
-import { FormEvent, useState } from 'react';
 import { database } from '../../services/firebase';
 
 export function NewRoom() {
@@ -31,7 +31,7 @@ export function NewRoom() {
   }
 
   return (
-    <div id="page-auth">
+    <PageAuth>
       <aside>
         <img
           src={illustrationImg}
@@ -63,6 +63,6 @@ export function NewRoom() {
           </p>
         </div>
       </main>
-    </div>
+    </PageAuth>
   );
 }

@@ -7,7 +7,7 @@ import googleIconImg from '../../assets/images/google-icon.svg';
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
 
-import './styles.scss';
+import { PageAuth } from './styles';
 import { database } from '../../services/firebase';
 
 export function Home() {
@@ -47,7 +47,7 @@ export function Home() {
   }
 
   return (
-    <div id="page-auth">
+    <PageAuth>
       <aside>
         <img
           src={illustrationImg}
@@ -82,6 +82,6 @@ export function Home() {
           </form>
         </div>
       </main>
-    </div>
+    </PageAuth>
   );
 }
