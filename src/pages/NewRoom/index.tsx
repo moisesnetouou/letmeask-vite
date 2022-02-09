@@ -25,6 +25,7 @@ export function NewRoom() {
     const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
+      email: user?.email_user,
     });
 
     navigate(`/rooms/${firebaseRoom.key}`);
@@ -39,6 +40,7 @@ export function NewRoom() {
     <PageAuth>
       <aside>
         <button onClick={handleLogout}>Desconectar</button>
+        <Link to="/rooms/all">Salas</Link>
         <img
           src={illustrationImg}
           alt="Ilustração simbolizando perguntas e respostas"

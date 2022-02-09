@@ -12,8 +12,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        const { displayName, photoURL, uid } = user;
-
+        const { displayName, photoURL, uid, providerData } = user;
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account');
         }
@@ -22,6 +21,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           id: uid,
           name: displayName,
           avatar: photoURL,
+          email_user: providerData[0].email,
         });
       }
     });
@@ -40,7 +40,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (result.user) {
       const { displayName, photoURL, uid, providerData } = result.user;
-      console.log('email', providerData[0].email);
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google Account');
       }
@@ -49,17 +48,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: uid,
         name: displayName,
         avatar: photoURL,
+        email_user: providerData[0].email,
       });
     }
   }
 
   async function signInWithGithub() {
     const provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
-      const { displayName, photoURL, uid } = result.user;
-
+      const { displayName, photoURL, uid, providerData } = result.user;
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google Account');
       }
@@ -68,6 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         id: uid,
         name: displayName,
         avatar: photoURL,
+        email_user: providerData[0].email,
       });
     }
   }
