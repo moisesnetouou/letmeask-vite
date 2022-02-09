@@ -25,6 +25,7 @@
     "prettier"
   ],
   "rules": {
+    "consistent-return": "off",
     "react/button-has-type": "off",
     "no-alert": "off",
     "no-nested-ternary": "off",

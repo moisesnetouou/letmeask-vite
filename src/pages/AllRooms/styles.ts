@@ -6,7 +6,7 @@ export const PageAuth = styled.div`
   height: 100vh;
 
   aside {
-    flex: 7;
+    flex: 4;
 
     background: #835afd;
     color: #ffffff;
@@ -49,12 +49,18 @@ export const PageAuth = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 320px;
+    max-width: 800px;
     align-items: stretch;
     text-align: center;
 
     > img {
       align-self: center;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin: 64px 0 24px;
+      font: 'Poppins', sans-serif;
     }
 
     form {
@@ -75,66 +81,20 @@ export const PageAuth = styled.div`
         width: 100%;
       }
     }
-  }
 
-  .create-room {
-    margin-top: 64px;
-    height: 50px;
-    border-radius: 8px;
-    font-weight: 500;
-    background: #ea4335;
-    color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    border: 0;
-
-    transition: filter 0.2s;
-
-    img {
-      margin-right: 8px;
+    p {
+      font-size: 14px;
+      color: #737380;
+      margin-top: 16px;
     }
 
-    &:hover {
-      filter: brightness(0.9);
+    a {
+      color: #e559f9;
     }
   }
+`;
 
-  .github {
-    margin-top: 2rem;
-    background: black;
-
-    svg {
-      margin-right: 8px;
-      font-size: 1.5rem;
-    }
-  }
-
-  .separator {
-    font-size: 14px;
-    color: #a8a8b3;
-
-    margin: 32px 0;
-    display: flex;
-    align-items: center;
-
-    &::before {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #a8a8b3;
-      margin-right: 16px;
-    }
-
-    &::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #a8a8b3;
-      margin-left: 16px;
-    }
-  }
+export const ContainerUl = styled.ul`
+  height: 30rem;
+  /* background: red; */
 `;

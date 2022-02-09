@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import { database } from '../services/firebase';
 import { useAuth } from './useAuth';

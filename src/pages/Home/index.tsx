@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
+import { FiGithub } from 'react-icons/fi';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
@@ -12,13 +13,21 @@ import { database } from '../../services/firebase';
 
 export function Home() {
   const navigate = useNavigate();
-  const { signInWithGoogle, user } = useAuth();
+  const { signInWithGoogle, user, signInWithGithub } = useAuth();
 
   const [roomCode, setRoomCode] = useState('');
 
   async function handleCreateRoom() {
     if (!user) {
       await signInWithGoogle();
+    }
+
+    navigate('/rooms/new');
+  }
+
+  async function handleCreateRoomGithub() {
+    if (!user) {
+      await signInWithGithub();
     }
 
     navigate('/rooms/new');
@@ -69,6 +78,16 @@ export function Home() {
             <img src={googleIconImg} alt="Logo do Google" />
             Crie sua sala com o Google
           </button>
+
+          <button
+            type="button"
+            className="create-room + github"
+            onClick={handleCreateRoomGithub}
+          >
+            <FiGithub />
+            Crie sua sala com o Github
+          </button>
+
           <div className="separator">ou entre em uma sala</div>
 
           <form onSubmit={handleJoinRoom}>
