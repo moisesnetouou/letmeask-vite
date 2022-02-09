@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-import { PageAuth, ContainerUl } from './styles';
+import { PageAuth } from './styles';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { WidgetRoom } from '../../components/WidgetRoom';
@@ -28,6 +28,10 @@ export function AllRooms() {
       const filterData = parsedRoom.filter(
         (data: any) => data[1].email === email
       );
+
+      if (email === undefined) {
+        return setMyRooms([]);
+      }
 
       setMyRooms(filterData);
     });
@@ -55,12 +59,9 @@ export function AllRooms() {
           <img src={logoImg} alt="Letmeask" />
           <h1>{user?.name}</h1>
 
-          <ContainerUl>
-            {myRoom.map((item) => (
-              <WidgetRoom title={item[1].title} />
-              // <h1>{item[0]}</h1>
-            ))}
-          </ContainerUl>
+          {myRoom.map((item) => (
+            <WidgetRoom key={item[0]} title={item[1].title} />
+          ))}
         </div>
       </main>
     </PageAuth>
