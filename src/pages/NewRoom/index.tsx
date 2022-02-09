@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
 export function NewRoom() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [newRoom, setNewRoom] = useState('');
   const navigate = useNavigate();
 
@@ -30,9 +30,15 @@ export function NewRoom() {
     navigate(`/rooms/${firebaseRoom.key}`);
   }
 
+  function handleLogout() {
+    logout();
+    navigate('/');
+  }
+
   return (
     <PageAuth>
       <aside>
+        <button onClick={handleLogout}>Desconectar</button>
         <img
           src={illustrationImg}
           alt="Ilustração simbolizando perguntas e respostas"

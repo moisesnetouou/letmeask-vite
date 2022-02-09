@@ -1,10 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+/* eslint-disable no-shadow */
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
 import { auth, firebase } from '../services/firebase';
 import { AuthContextType, User } from './@types/auth';
@@ -56,8 +51,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function logout() {
+    await auth.signOut();
+  }
+
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle, logout }}>
       {children}
     </AuthContext.Provider>
   );
