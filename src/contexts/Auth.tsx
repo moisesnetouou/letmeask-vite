@@ -51,12 +51,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }
 
+  async function signInWithGithub() {
+    const provider = new firebase.auth.GithubAuthProvider();
+    const result = await auth.signInWithPopup(provider);
+
+    if (result.user) {
+      const { displayName, photoURL, uid } = result.user;
+
+      if (!displayName || !photoURL) {
+        throw new Error('Missing information from Google Account');
+      }
+
+      setUser({
+        id: uid,
+        name: displayName,
+        avatar: photoURL,
+      });
+    }
+  }
+
   async function logout() {
     await auth.signOut();
   }
 
   return (
-    <AuthContext.Provider value={{ user, signInWithGoogle, logout }}>
+    <AuthContext.Provider
+      value={{ user, signInWithGoogle, logout, signInWithGithub }}
+    >
       {children}
     </AuthContext.Provider>
   );

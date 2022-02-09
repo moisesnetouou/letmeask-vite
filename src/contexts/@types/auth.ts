@@ -6,6 +6,7 @@ export type User = {
 
 export type AuthContextType = {
   user: User | undefined;
+  signInWithGithub: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
 };

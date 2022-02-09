@@ -103,6 +103,16 @@ export const PageAuth = styled.div`
     }
   }
 
+  .github {
+    margin-top: 2rem;
+    background: black;
+
+    svg {
+      margin-right: 8px;
+      font-size: 1.5rem;
+    }
+  }
+
   .separator {
     font-size: 14px;
     color: #a8a8b3;
