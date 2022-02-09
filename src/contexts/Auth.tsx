@@ -33,12 +33,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
 
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
-      const { displayName, photoURL, uid } = result.user;
-
+      const { displayName, photoURL, uid, providerData } = result.user;
+      console.log('email', providerData[0].email);
       if (!displayName || !photoURL) {
         throw new Error('Missing information from Google Account');
       }
