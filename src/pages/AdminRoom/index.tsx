@@ -5,7 +5,7 @@ import { Button } from '../../components/Button';
 import { RoomCode } from '../../components/RoomCode';
 import { Question } from '../../components/Question';
 import { useRoom } from '../../hooks/useRoom';
-import './styles.scss';
+import { PageRoom } from './styles';
 import deleteImg from '../../assets/images/delete.svg';
 import checkImg from '../../assets/images/check.svg';
 import answerImg from '../../assets/images/answer.svg';
@@ -48,7 +48,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div id="page-room">
+    <PageRoom>
       <header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
@@ -111,6 +111,6 @@ export function AdminRoom() {
           })}
         </div>
       </main>
-    </div>
+    </PageRoom>
   );
 }

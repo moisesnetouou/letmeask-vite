@@ -1,4 +1,6 @@
-#page-room {
+import styled from 'styled-components';
+
+export const PageRoom = styled.div`
   header {
     padding: 24px;
     border-bottom: 1px solid #e2e2e2;
@@ -12,15 +14,6 @@
 
       > img {
         max-height: 45px;
-      }
-
-      > div {
-        display: flex;
-        gap: 16px;
-
-        button {
-          height: 40px;
-        }
       }
     }
   }
@@ -109,4 +102,4 @@
       margin-top: 32px;
     }
   }
-}
+`;
