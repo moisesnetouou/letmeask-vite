@@ -23,15 +23,26 @@ export const Container = styled.div`
     flex-direction: column;
 
     button {
+      display: flex;
       background: #835afd;
       color: #fff;
-      padding: 4px;
+      padding: 5px;
       border: 0;
       border-radius: 0.5rem;
       cursor: pointer;
+      text-align: center;
+    }
 
-      & + button {
-        margin-top: 0.5rem;
+    a {
+      display: flex;
+      margin-top: 0.5rem;
+      background: #835afd;
+      padding: 5px;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      svg {
+        color: #fff;
       }
     }
   }

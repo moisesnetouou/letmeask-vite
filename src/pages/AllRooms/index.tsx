@@ -67,7 +67,7 @@ export function AllRooms() {
 
           <Container>
             {myRoom.map((item) => (
-              <WidgetRoom key={item.id} title={item.room.title} />
+              <WidgetRoom key={item.id} id={item.id} title={item.room.title} />
             ))}
           </Container>
         </div>

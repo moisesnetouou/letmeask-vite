@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    provider.addScope('photoURL');
+
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
@@ -57,7 +57,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = new firebase.auth.GithubAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-    provider.addScope('photoURL');
+
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
