@@ -2,22 +2,37 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  background: #f4f8ff;
+  background: #fefefe;
   width: 100%;
   border-radius: 8px;
   justify-content: space-between;
   padding: 2rem;
   color: #29292e;
   margin: 0.5rem 0rem;
-  border: 1px solid #835afd;
-  height: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+
+  height: 5rem;
   align-items: center;
 
   > span {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   div {
-    background: red;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      background: #835afd;
+      color: #fff;
+      padding: 4px;
+      border: 0;
+      border-radius: 0.5rem;
+      cursor: pointer;
+
+      & + button {
+        margin-top: 0.5rem;
+      }
+    }
   }
 `;

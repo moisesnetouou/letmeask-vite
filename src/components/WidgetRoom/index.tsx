@@ -1,11 +1,20 @@
+import { BiRightArrow } from 'react-icons/bi';
+import { MdOutlineContentCopy } from 'react-icons/md';
 import { Container } from './styles';
 
-export function WidgetRoom({ title }: any) {
+export function WidgetRoom({ title, id }: any) {
   return (
     <Container>
       <span>{title}</span>
 
-      <div>2</div>
+      <div>
+        <button>
+          <MdOutlineContentCopy />
+        </button>
+        <button>
+          <BiRightArrow />
+        </button>
+      </div>
     </Container>
   );
 }

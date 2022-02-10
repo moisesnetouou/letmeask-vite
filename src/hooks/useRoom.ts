@@ -42,7 +42,7 @@ export function useRoom(roomId: string | undefined) {
   const [title, setTitle] = useState();
 
   useEffect(() => {
-    console.log(roomId);
+    // console.log(roomId);
     const roomRef = database.ref(`rooms/${roomId}`);
 
     roomRef.on('value', (room) => {

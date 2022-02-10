@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-import { PageAuth } from './styles';
+import { PageAuth, Container } from './styles';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 import { WidgetRoom } from '../../components/WidgetRoom';
@@ -29,11 +29,17 @@ export function AllRooms() {
         (data: any) => data[1].email === email
       );
 
+      const allDataMyRooms = filterData.map((data: any) => ({
+        id: data[0],
+        room: data[1],
+        question: data[1].questions ? Object.values(data[1].questions) : [],
+      }));
+
       if (email === undefined) {
         return setMyRooms([]);
       }
-
-      setMyRooms(filterData);
+      console.log(allDataMyRooms);
+      setMyRooms(allDataMyRooms);
     });
 
     return () => {
@@ -59,9 +65,11 @@ export function AllRooms() {
           <img src={logoImg} alt="Letmeask" />
           <h1>{user?.name}</h1>
 
-          {myRoom.map((item) => (
-            <WidgetRoom key={item[0]} title={item[1].title} />
-          ))}
+          <Container>
+            {myRoom.map((item) => (
+              <WidgetRoom key={item.id} title={item.room.title} />
+            ))}
+          </Container>
         </div>
       </main>
     </PageAuth>

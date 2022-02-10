@@ -94,7 +94,8 @@ export const PageAuth = styled.div`
   }
 `;
 
-export const ContainerUl = styled.ul`
+export const Container = styled.ul`
   height: 30rem;
+  overflow-y: scroll;
   /* background: red; */
 `;
