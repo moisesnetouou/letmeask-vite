@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import { createContext, ReactNode, useEffect, useState } from 'react';
 
-import { auth, firebase } from '../services/firebase';
+import { auth, database, firebase } from '../services/firebase';
 import { AuthContextType, User } from './@types/auth';
 
 export const AuthContext = createContext({} as AuthContextType);
@@ -35,7 +35,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('profile');
     provider.addScope('email');
-
+    const userRef = database.ref('users');
     const result = await auth.signInWithPopup(provider);
 
     if (result.user) {
@@ -50,6 +50,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         avatar: photoURL,
         email_user: providerData[0].email,
       });
+
+      userRef.once('value', (user) => {
+        const databaseUser = user.val();
+        const parsedUser = Object.entries(databaseUser);
+
+        console.log('data', parsedUser);
+      });
+
+      // await userRef.push({
+      //   id: uid,
+      //   name: displayName,
+      //   avatar: photoURL,
+      //   email: providerData[0].email,
+      // });
     }
   }
 

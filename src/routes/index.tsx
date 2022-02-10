@@ -5,11 +5,13 @@ import { NewRoom } from '../pages/NewRoom';
 import { Room } from '../pages/Room';
 import { AdminRoom } from '../pages/AdminRoom';
 import { AllRooms } from '../pages/AllRooms';
+import { Dashboard } from '../pages/Dashboard';
 
 export default function MainRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/rooms/new" element={<NewRoom />} />
       <Route path="/rooms/:id" element={<Room />} />
 

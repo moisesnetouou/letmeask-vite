@@ -11,7 +11,7 @@ import { useAuth } from '../../hooks/useAuth';
 import { PageAuth } from './styles';
 import { database } from '../../services/firebase';
 
-export function Home() {
+export function Dashboard() {
   const navigate = useNavigate();
   const { signInWithGoogle, user, signInWithGithub } = useAuth();
 
@@ -22,7 +22,7 @@ export function Home() {
       await signInWithGoogle();
     }
 
-    navigate('/dashboard');
+    navigate('/rooms/new');
   }
 
   async function handleCreateRoomGithub() {
@@ -30,7 +30,7 @@ export function Home() {
       await signInWithGithub();
     }
 
-    navigate('/dashboard');
+    navigate('/rooms/new');
   }
 
   async function handleJoinRoom(event: FormEvent) {
@@ -63,7 +63,7 @@ export function Home() {
           alt="Ilustração simbolizando perguntas e respostas"
         />
 
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
+        <strong>Dashboard</strong>
         <p>Tire as dúvidas da sua audiência em tempo-real</p>
       </aside>
 
@@ -73,32 +73,29 @@ export function Home() {
           <button
             type="button"
             className="create-room"
-            onClick={handleCreateRoom}
+            onClick={() => navigate('/rooms/all')}
           >
             <img src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
+            Acessar suas salas
           </button>
 
           <button
             type="button"
-            className="create-room + github"
+            className="create-room"
             onClick={handleCreateRoomGithub}
           >
             <FiGithub />
-            Crie sua sala com o Github
+            Criar Sala
           </button>
 
-          <div className="separator">ou entre em uma sala</div>
-
-          <form onSubmit={handleJoinRoom}>
-            <input
-              type="text"
-              placeholder="Digite o código da sala"
-              onChange={(event) => setRoomCode(event.target.value)}
-              value={roomCode}
-            />
-            <Button type="submit">Entrar na sala</Button>
-          </form>
+          <button
+            type="button"
+            className="create-room"
+            onClick={handleCreateRoomGithub}
+          >
+            <FiGithub />
+            Acessar uma sala existente
+          </button>
         </div>
       </main>
     </PageAuth>
