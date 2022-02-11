@@ -96,6 +96,15 @@ export function Dashboard() {
             <FiGithub />
             Acessar uma sala existente
           </button>
+
+          <button
+            type="button"
+            className="create-room"
+            onClick={() => navigate('/me')}
+          >
+            <FiGithub />
+            Perfil
+          </button>
         </div>
       </main>
     </PageAuth>
