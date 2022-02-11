@@ -16,7 +16,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account');
         }
-        console.log(photoURL);
         setUser({
           id: uid,
           name: displayName,
@@ -51,19 +50,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         email_user: providerData[0].email,
       });
 
-      userRef.once('value', (user) => {
+      userRef.on('value', (user) => {
         const databaseUser = user.val();
-        const parsedUser = Object.entries(databaseUser);
+        const parsedUser = Object.values(databaseUser);
 
-        console.log('data', parsedUser);
+        const isExistUser = parsedUser.some(
+          (item: any) => item.email === providerData[0].email
+        );
+        if (!isExistUser) {
+          userRef.push({
+            id: uid,
+            name: displayName,
+            avatar: photoURL,
+            email: providerData[0].email,
+          });
+        }
       });
-
-      // await userRef.push({
-      //   id: uid,
-      //   name: displayName,
-      //   avatar: photoURL,
-      //   email: providerData[0].email,
-      // });
     }
   }
 

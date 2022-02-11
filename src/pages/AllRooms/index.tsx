@@ -25,6 +25,7 @@ export function AllRooms() {
     roomRef.on('value', (room) => {
       const databaseRoom = room.val();
       const parsedRoom = Object.entries(databaseRoom);
+
       const filterData = parsedRoom.filter(
         (data: any) => data[1].email === email
       );
