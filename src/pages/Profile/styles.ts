@@ -45,6 +45,10 @@ export const PageAuth = styled.div`
     justify-content: center;
   }
 
+  .loading {
+    width: 2rem;
+  }
+
   .main-content {
     display: flex;
     flex-direction: column;
