@@ -1,21 +1,43 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { FiGithub } from 'react-icons/fi';
+import { BsGoogle } from 'react-icons/bs';
+import { MdEmail } from 'react-icons/md';
 
 import illustrationImg from '../../assets/images/illustration.svg';
 import logoImg from '../../assets/images/logo.svg';
-import googleIconImg from '../../assets/images/google-icon.svg';
 import { Button } from '../../components/Button';
 import { useAuth } from '../../hooks/useAuth';
 
-import { PageAuth } from './styles';
+import { PageAuth, ProviderContent } from './styles';
 import { database } from '../../services/firebase';
 
 export function Home() {
   const navigate = useNavigate();
-  const { signInWithGoogle, user, signInWithGithub } = useAuth();
+  const {
+    signInWithGoogle,
+    user,
+    signInWithGithub,
+    createAccountEmailWithPassword,
+    signInEmailWithPassword,
+  } = useAuth();
 
-  const [roomCode, setRoomCode] = useState('');
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  // async function handleSignInEmail(event: FormEvent) {
+  //   event.preventDefault();
+  //   if (!user) {
+  //     await createAccountEmailWithPassword(email, senha);
+  //   }
+  // }
+
+  async function handleSignInEmail(event: FormEvent) {
+    event.preventDefault();
+    if (!user) {
+      await signInEmailWithPassword(email, senha);
+    }
+  }
 
   async function handleCreateRoom() {
     if (!user) {
@@ -33,28 +55,6 @@ export function Home() {
     navigate('/dashboard');
   }
 
-  async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault();
-
-    if (roomCode.trim() === '') {
-      return;
-    }
-
-    const roomRef = await database.ref(`rooms/${roomCode}`).get();
-
-    if (!roomRef.exists()) {
-      alert('Room does not exists.');
-      return;
-    }
-
-    if (roomRef.val().endedAt) {
-      alert('Room already closed.');
-      return;
-    }
-
-    navigate(`/rooms/${roomCode}`);
-  }
-
   return (
     <PageAuth>
       <aside>
@@ -70,35 +70,41 @@ export function Home() {
       <main>
         <div className="main-content">
           <img src={logoImg} alt="Letmeask" />
-          <button
-            type="button"
-            className="create-room"
-            onClick={handleCreateRoom}
-          >
-            <img src={googleIconImg} alt="Logo do Google" />
-            Crie sua sala com o Google
-          </button>
 
-          <button
-            type="button"
-            className="create-room + github"
-            onClick={handleCreateRoomGithub}
-          >
-            <FiGithub />
-            Crie sua sala com o Github
-          </button>
-
-          <div className="separator">ou entre em uma sala</div>
-
-          <form onSubmit={handleJoinRoom}>
+          <form className="sign-in-email" onSubmit={handleSignInEmail}>
             <input
               type="text"
-              placeholder="Digite o código da sala"
-              onChange={(event) => setRoomCode(event.target.value)}
-              value={roomCode}
+              placeholder="Email"
+              onChange={(event) => setEmail(event.target.value)}
+              value={email}
             />
-            <Button type="submit">Entrar na sala</Button>
+
+            <input
+              type="text"
+              placeholder="Senha"
+              onChange={(event) => setSenha(event.target.value)}
+              value={senha}
+            />
+            <Button type="submit">Login</Button>
           </form>
+
+          <ProviderContent>
+            <button type="button" className="google" onClick={handleCreateRoom}>
+              <BsGoogle />
+            </button>
+
+            <button
+              type="button"
+              className="github"
+              onClick={handleCreateRoomGithub}
+            >
+              <FiGithub />
+            </button>
+
+            <button type="button" onClick={() => console.log('email')}>
+              <MdEmail />
+            </button>
+          </ProviderContent>
         </div>
       </main>
     </PageAuth>

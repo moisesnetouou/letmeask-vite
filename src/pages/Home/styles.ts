@@ -45,6 +45,15 @@ export const PageAuth = styled.div`
     justify-content: center;
   }
 
+  .sign-in-email {
+    input {
+      margin-top: 2rem;
+      & + input {
+        margin-top: 1rem;
+      }
+    }
+  }
+
   .main-content {
     display: flex;
     flex-direction: column;
@@ -103,7 +112,7 @@ export const PageAuth = styled.div`
     }
   }
 
-  .github {
+  /* .github {
     margin-top: 2rem;
     background: black;
 
@@ -111,7 +120,7 @@ export const PageAuth = styled.div`
       margin-right: 8px;
       font-size: 1.5rem;
     }
-  }
+  } */
 
   .separator {
     font-size: 14px;
@@ -137,4 +146,27 @@ export const PageAuth = styled.div`
       margin-left: 16px;
     }
   }
+`;
+
+export const ProviderContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4rem;
+
+  button {
+    background: #835afd;
+    border: 0;
+    padding: 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    width: 4rem;
+    cursor: pointer;
+  }
+  /* 
+  .google {
+    background: #ea4335;
+  }
+  .github {
+    background: black;
+  } */
 `;

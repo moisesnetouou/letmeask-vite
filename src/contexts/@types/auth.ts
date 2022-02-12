@@ -3,6 +3,7 @@ export type User = {
   name: string;
   avatar: string;
   email_user?: string;
+  accessToken?: string;
 };
 
 export type AuthContextType = {
@@ -10,4 +11,6 @@ export type AuthContextType = {
   signInWithGithub: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
+  createAccountEmailWithPassword: any;
+  signInEmailWithPassword: any;
 };
