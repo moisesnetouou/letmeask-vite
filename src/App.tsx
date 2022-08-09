@@ -1,9 +1,8 @@
-import { Home } from "./pages/Home"
-import { NewRoom } from "./pages/NewRoom"
+import { MainRoutes } from "./routes"
 
 function App() {
   return (
-    <NewRoom />
+    <MainRoutes />
   )
 }
 
