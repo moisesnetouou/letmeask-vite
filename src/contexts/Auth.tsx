@@ -38,6 +38,9 @@ export function AuthProvider({children}: any){
 
   async function signInWithGoogle(){
     const provider = new GoogleAuthProvider();
+    // provider.addScope('profile');
+    // provider.addScope('email');
+    
     const auth = getAuth();
 
     const result = await signInWithPopup(auth,provider);
