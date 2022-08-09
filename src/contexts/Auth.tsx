@@ -19,7 +19,7 @@ export function AuthProvider({children}: any){
 
   useEffect(()=> {
     const auth = getAuth();
-    onAuthStateChanged(auth, user => {//event listener
+    const unsubscribe = onAuthStateChanged(auth, user => {//event listener
       if(user){
         const {displayName, photoURL, uid} = user;
         
@@ -30,6 +30,10 @@ export function AuthProvider({children}: any){
         setUser({id: uid, name: displayName, avatar: photoURL});
       }
     }) 
+
+    return () => {
+      unsubscribe();
+    }
   }, [])
 
   async function signInWithGoogle(){
