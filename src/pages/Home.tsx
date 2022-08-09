@@ -5,20 +5,18 @@ import googleIconImg from '../assets/images/google-icon.svg'
 
 import '../styles/auth.scss';
 import { Button } from '../components/Button';
-
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useAuth } from '../hooks/useAuth';
 
 export function Home(){
   const navigate = useNavigate();
+  const {signInWithGoogle, user} = useAuth();
 
-  function handleCreateRoom(){
-    const provider = new GoogleAuthProvider();
+  async function handleCreateRoom(){
+    if(!user){
+      await signInWithGoogle();
+    }
 
-    signInWithPopup(getAuth(),provider).then(result => {
-      console.log(result)
-    })
-
-    // navigate('rooms/new');
+    navigate('rooms/new');
   }
 
   return(

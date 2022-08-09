@@ -1,8 +1,11 @@
+import { AppProvider } from "./contexts"
 import { MainRoutes } from "./routes"
 
 function App() {
   return (
-    <MainRoutes />
+    <AppProvider>
+      <MainRoutes />
+    </AppProvider>
   )
 }
 
