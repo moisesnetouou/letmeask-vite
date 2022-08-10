@@ -11,6 +11,9 @@ interface FirebaseQuestion extends Record<string, {
   content: string;
   isAnswer: string;
   isHighlighted: string;
+  likes: Record<string, {
+    authorId: string;
+  }>
 }> { }
 
 interface Question {
@@ -22,6 +25,8 @@ interface Question {
   content: string;
   isAnswer: string;
   isHighlighted: string;
+  likeCount: number;
+  likeId: string | undefined;
 }
 
 export function useRoom(roomId: string | undefined) {
@@ -45,7 +50,9 @@ export function useRoom(roomId: string | undefined) {
           content: value.content,
           author: value.author,
           isHighlighted: value.isHighlighted,
-          isAnswer: value.isAnswer
+          isAnswer: value.isAnswer,
+          likeCount: Object.values(value.likes ?? {}).length,
+          likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
         }
       });
 
