@@ -1,17 +1,18 @@
 import logoImg from '../assets/images/logo.svg';
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/RoomCode';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import '../styles/room.scss';
 import { Question } from '../components/Question';
 import { useRoom } from '../hooks/useRoom';
 import deleteImg from '../assets/images/delete.svg';
-import { getDatabase, ref, remove } from 'firebase/database';
+import { getDatabase, ref, remove, update } from 'firebase/database';
 type RoomParams = {
   id: string;
 }
 
 export function AdminRoom(){
+  const navigate = useNavigate();
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
@@ -26,6 +27,17 @@ export function AdminRoom(){
     }
   }
 
+  async function handleEndRoom(){
+    const database = getDatabase();
+    const roomRef = ref(database, `rooms/${roomId}`);
+
+    await update(roomRef, {
+      endedAt: new Date()
+    })
+
+    navigate('/');
+  }
+
   return(
     <div id="page-room">
       <header>
@@ -38,7 +50,7 @@ export function AdminRoom(){
               code={roomId} 
             />
 
-            <Button isOutlined>Encerrar sala</Button>
+            <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>
           </div>
         </div>
       </header>
