@@ -6,6 +6,7 @@ import '../styles/room.scss';
 import { FormEvent, useEffect, useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
 import { getDatabase, onValue, push, ref, set } from 'firebase/database';
+import { Question } from '../components/Question';
 
 type RoomParams = {
   id: string;
@@ -139,10 +140,18 @@ export function Room(){
             <Button type="submit" disabled={!user}>Enviar pergunta</Button>
           </div>
         </form>
-
-      
-          {JSON.stringify(questions)}
         
+        <div className="question-list">
+          {questions.map(question => {
+            return (
+              <Question 
+                key={question.id} 
+                author={question.author} 
+                content={question.content}  
+              />
+            )
+          })}
+        </div>
       </main>
     </div>
   );
