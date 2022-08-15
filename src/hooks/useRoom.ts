@@ -9,8 +9,8 @@ interface FirebaseQuestion extends Record<string, {
     avatar: string;
   }
   content: string;
-  isAnswer: string;
-  isHighlighted: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
   likes: Record<string, {
     authorId: string;
   }>
@@ -23,8 +23,8 @@ interface Question {
     avatar: string;
   }
   content: string;
-  isAnswer: string;
-  isHighlighted: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
   likeCount: number;
   likeId: string | undefined;
 }
@@ -50,12 +50,12 @@ export function useRoom(roomId: string | undefined) {
           content: value.content,
           author: value.author,
           isHighlighted: value.isHighlighted,
-          isAnswer: value.isAnswer,
+          isAnswered: value.isAnswered,
           likeCount: Object.values(value.likes ?? {}).length,
           likeId: Object.entries(value.likes ?? {}).find(([key, like]) => like.authorId === user?.id)?.[0],
         }
       });
-
+      console.log("teste", parsedQuestions)
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
     })
